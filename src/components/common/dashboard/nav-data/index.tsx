@@ -2,6 +2,8 @@ import {
   LayoutDashboard,
   UsersRound,
   Settings,
+  Calendar,
+  UserRound,
 } from "lucide-react";
 
 interface ItemProps {
@@ -19,12 +21,14 @@ export interface SideDataProps {
 export const adminSideLinks: SideDataProps[] = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
   { to: "/parents", icon:  UsersRound, label: "Parents" },
-  { to: "/drivers", icon:  UsersRound, label: "Drivers" },
-  { to: "/transactions", icon:  UsersRound, label: "Transactions" },
+  { to: "/drivers", icon:  UserRound, label: "Drivers" },
+  { to: "/transactions", icon:Calendar, label: "Transactions" },
   {
     icon: Settings,
     label: "Settings",
     submenu: [
+      { to: "/change-password", label: "Change Password" },
+      { to: "/change-password", label: "Change Password" },
       { to: "/change-password", label: "Change Password" },
     ],
   },
