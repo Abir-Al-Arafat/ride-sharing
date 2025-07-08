@@ -1,7 +1,6 @@
-
+import TextEditor from "../../reuseable/text-editor";
 
 export default function AboutUs() {
-  return (
-    <div>AboutUs</div>
-  )
+  // value={field.value} onChange={field.onChange}
+  return <TextEditor />;
 }
