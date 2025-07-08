@@ -31,8 +31,8 @@ export const adminSideLinks: SideDataProps[] = [
     label: "Settings",
     submenu: [
       { to: "/change-password",icon:KeyRound, label:"Change Password" },
-      { to: "/change-password",icon:CircleAlert, label:"About Us" },
-      { to: "/change-password",icon:CircleQuestionMark, label:"FAQ" }
+      { to: "/about-us",icon:CircleAlert, label:"About Us" },
+      { to: "/fqa",icon:CircleQuestionMark, label:"FAQ" }
     ],
   },
 ];

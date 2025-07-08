@@ -1,13 +1,16 @@
 import React, { createContext, useState } from "react";
 
-interface TitleContextType {
-  title: string;
-  subtitle: string;
+
+
+export interface TitleContextType {
+  title?: string;
+  subtitle?: string;
   setTitle: (title: string) => void;
   setSubtitle: (subtitle: string) => void;
 }
 
 export const TitleContext = createContext<TitleContextType | undefined>(undefined);
+
 
 export const TitleProvider = ({ children }: { children: React.ReactNode }) => {
   const [title, setTitle] = useState("Dashboard Overview");

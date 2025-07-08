@@ -1,20 +1,18 @@
-import { Navigate } from "react-router-dom";
 import MainLayout from "../../layouts/main";
 import Dashboard from "../../components/views/dashbord";
 import Parents from "../../components/views/parents";
 import Drivers from "../../components/views/drivers";
 import Transactions from "../../components/views/transactions";
 import Notifications from "../../components/views/notifications";
+import Profile from "../../components/views/profile";
+import FQA from "../../components/views/fqa";
+import AboutUs from "../../components/views/about";
 
 const adminRoutes = [
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      {
-        path: "",
-        element: <Navigate replace to="dashboard" />,
-      },
       {
         index: true,
         element: <Dashboard />,
@@ -28,9 +26,21 @@ const adminRoutes = [
       }, {
         path: "/transactions",
         element: <Transactions />,
+      }, {
+        path: '/notifications',
+        element: <Notifications />
+      }, {
+        path: '/profile',
+        element: < Profile />
+      }, {
+        path: '/fqa',
+        element: <FQA />
       },{
-        path:'/notifications',
-        element:<Notifications/>
+        path:'/change-password',
+        element:<Profile />
+      },{
+        path:'/about-us',
+        element:<AboutUs/>
       }
     ],
   },
