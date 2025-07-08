@@ -4,17 +4,20 @@ import {
   Settings,
   Calendar,
   UserRound,
+  KeyRound,
+  CircleAlert,
+  CircleQuestionMark,
 } from "lucide-react";
 
 interface ItemProps {
   to?: string;
-  icon?: React.ComponentType;
+  icon?:any;
   label: string;
 }
 
 export interface SideDataProps {
   to?: string;
-  icon?: React.ComponentType;
+  icon?:any;
   label: string;
   submenu?: ItemProps[];
 }
@@ -27,9 +30,9 @@ export const adminSideLinks: SideDataProps[] = [
     icon: Settings,
     label: "Settings",
     submenu: [
-      { to: "/change-password", label: "Change Password" },
-      { to: "/change-password", label: "Change Password" },
-      { to: "/change-password", label: "Change Password" },
+      { to: "/change-password",icon:KeyRound, label:"Change Password" },
+      { to: "/change-password",icon:CircleAlert, label:"About Us" },
+      { to: "/change-password",icon:CircleQuestionMark, label:"FAQ" }
     ],
   },
 ];

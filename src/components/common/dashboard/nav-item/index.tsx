@@ -25,8 +25,8 @@ export default function NavItem({ item }: { item: SideDataProps[] }) {
         {item.map(({ to, label, icon: Icon, submenu }, parentIndex) => (
           <li key={parentIndex}>
             {to ? (
-              <Link className="flex px-3 hover:bg-[#FFFFFF66] py-2 items-center font-medium text-base gap-x-2 text-primary hover:text-white" to={to}>
-                {Icon && <Icon />} {label}
+              <Link className="flex px-3 hover:bg-[#FFFFFF66] hover:border-l-3 border-[#FED139] py-2 items-center font-medium text-base gap-x-2 text-primary hover:text-white" to={to}>
+                {Icon && <Icon size={20}  />} {label}
               </Link>
             ) : (
               <div
@@ -34,7 +34,7 @@ export default function NavItem({ item }: { item: SideDataProps[] }) {
                 className="flex items-center px-3  py-2 justify-between cursor-pointer"
               >
                 <span className="flex items-center gap-x-2">
-                  {Icon && <Icon />} {label}
+                  {Icon && <Icon size={20} />} {label}
                 </span>
                 {activeSubmenu === parentIndex ? (
                   <ChevronUp className="size-5 font-extrabold" />
@@ -52,10 +52,10 @@ export default function NavItem({ item }: { item: SideDataProps[] }) {
                 className="overflow-hidden transition-all duration-300 ease-out max-h-0"
               >
                 {submenu.map(({ to, label, icon: SubIcon }, subIndex) => (
-                  <li key={subIndex} className="pl-6 hover:bg-[#FFFFFF66] py-2 hover:text-white">
+                  <li key={subIndex} className="pl-6 hover:bg-[#FFFFFF66] hover:border-l-3 border-[#FED139] py-2 hover:text-white">
                     {to && (
                       <Link className="flex items-center gap-x-2" to={to}>
-                        {SubIcon && <SubIcon />} {label}
+                        {SubIcon && <SubIcon size={20} />} {label}
                       </Link>
                     )}
                   </li>

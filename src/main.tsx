@@ -4,10 +4,13 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
 import "./index.css";
+import { TitleProvider } from "./components/proviers/title";
 
 // Render the App
 createRoot(document.getElementById("root") as HTMLElement).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <TitleProvider>
+      <RouterProvider router={router} />
+    </TitleProvider>
   </StrictMode>
 );

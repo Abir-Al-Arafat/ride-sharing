@@ -1,4 +1,4 @@
-import { Eye, Funnel, Search, Trash2 } from "lucide-react";
+import { Eye, Search, Trash2 } from "lucide-react";
 import { Button, TableCell, TableRow } from "../../ui";
 import { Table } from "../../reuseable/table";
 import { PlaceholderImg } from "../../../lib/utils";
@@ -6,89 +6,100 @@ import { Pagination } from "../../reuseable/pagination";
 import { useTitle } from "../../../hooks/title";
 import { useEffect } from "react";
 
-export default function Parents() {
-    const { setTitle, setSubtitle,title, subtitle } = useTitle();
+export default function Drivers() {
+    const { setTitle, setSubtitle,title, subtitle} = useTitle();
 
     useEffect(() => {
-        setTitle("Parents");
-        setSubtitle("You can see here all the parents those use your application");
+        setTitle("Drivers");
+        setSubtitle("You can see here all the drivers those use your application to earn money");
     }, [setTitle, setSubtitle]);
-    const headers = ["Sl. No", "Name", "Email", "Address", "Action"];
+    const headers = ["Sr. No", "Name", "Email", "Contact info", "NID/Passport", "Action"];
+
 
     const tableData = [
         {
             id: 1,
             slNo: "001",
             name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            email: "abid.hasan@example.com",
+            contact_info: "+880 1755 112233",
+            nid_or_passport: "1234 5678 9012",
             avatar: PlaceholderImg(),
         },
         {
             id: 2,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "002",
+            name: "Fatema Akter",
+            email: "fatema.akter@example.com",
+            contact_info: "+880 1622 334455",
+            nid_or_passport: "2345 6789 0123",
             avatar: PlaceholderImg(),
         },
         {
             id: 3,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "003",
+            name: "Naimur Rahman",
+            email: "naimur.rahman@example.com",
+            contact_info: "+880 1911 223344",
+            nid_or_passport: "3456 7890 1234",
             avatar: PlaceholderImg(),
         },
         {
             id: 4,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "004",
+            name: "Sadia Jahan",
+            email: "sadia.jahan@example.com",
+            contact_info: "+880 1888 556677",
+            nid_or_passport: "4567 8901 2345",
             avatar: PlaceholderImg(),
         },
         {
             id: 5,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "005",
+            name: "Jamal Hossain",
+            email: "jamal.hossain@example.com",
+            contact_info: "+880 1555 998877",
+            nid_or_passport: "5678 9012 3456",
             avatar: PlaceholderImg(),
         },
         {
             id: 6,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "006",
+            name: "Sabina Yasmin",
+            email: "sabina.yasmin@example.com",
+            contact_info: "+880 1777 445566",
+            nid_or_passport: "6789 0123 4567",
             avatar: PlaceholderImg(),
         },
         {
             id: 7,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "007",
+            name: "Rahim Uddin",
+            email: "rahim.uddin@example.com",
+            contact_info: "+880 1999 332211",
+            nid_or_passport: "7890 1234 5678",
             avatar: PlaceholderImg(),
         },
         {
             id: 8,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "007",
+            name: "Rahim Uddin",
+            email: "rahim.uddin@example.com",
+            contact_info: "+880 1999 332211",
+            nid_or_passport: "7890 1234 5678",
             avatar: PlaceholderImg(),
         },
         {
             id: 9,
-            slNo: "001",
-            name: "Md. Abid Hasan",
-            email: "example@gmail.com",
-            address: "New york, USA",
+            slNo: "007",
+            name: "Rahim Uddin",
+            email: "rahim.uddin@example.com",
+            contact_info: "+880 1999 332211",
+            nid_or_passport: "7890 1234 5678",
             avatar: PlaceholderImg(),
-        },
-    ]
+        }
+    ];
+
 
     return (
         <div>
@@ -102,7 +113,7 @@ export default function Parents() {
                         <input
                             type="text"
                             className="w-full bg-white pl-2 border-[1px] py-2 text-primary outline-0 placeholder:text-gray-300 placeholder:text-sm"
-                            placeholder="Search for parents"
+                            placeholder="Search for driver"
                         />
                         <div className="bg-[#5B7A7D] py-3 px-3 rounded-tr-xs rounded-br-xs text-white font-semibold transition-colors cursor-pointer">
                             <Search size={17} />
@@ -111,8 +122,7 @@ export default function Parents() {
                 </li>
                 <li>
                     <Button className="bg-[#5B7A7D] rounded-xs h-full py-[10px] hover:bg-[#5B7A7D] cursor-pointer">
-                        <Funnel size={18} className="mr-1" />
-                        Filter
+                        Requests (10)
                     </Button>
                 </li>
             </ul>
@@ -135,7 +145,8 @@ export default function Parents() {
                                 </div>
                             </TableCell>
                             <TableCell className="border-style">{item.email}</TableCell>
-                            <TableCell className="border-style">{item.address}</TableCell>
+                            <TableCell className="border-style">{item.contact_info}</TableCell>
+                            <TableCell className="border-style">{item.nid_or_passport}</TableCell>
                             <TableCell className="flex gap-2">
                                 <div className="bg-[#fff3eb] text-white px-2 py-1 w-fit rounded-md cursor-pointer"><Eye className="text-[#F96D10]" /></div>
                                 <div className="bg-[#ffe5e5] text-white px-2 py-1 w-fit rounded-md cursor-pointer"><Trash2 size={20} className="text-[#ff0000]" /></div>

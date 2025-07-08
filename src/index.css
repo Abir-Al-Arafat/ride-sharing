@@ -119,3 +119,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.border-style {
+  @apply relative after:absolute after:right-0 after:w-[1px] after:h-6 after:bg-[#b3b3b3]
+}
