@@ -7,6 +7,7 @@ import Notifications from "../../components/views/notifications";
 import Profile from "../../components/views/profile";
 import FQA from "../../components/views/fqa";
 import AboutUs from "../../components/views/about";
+import RequestsDriver from "../../components/views/requests";
 
 const adminRoutes = [
   {
@@ -41,6 +42,9 @@ const adminRoutes = [
       },{
         path:'/about-us',
         element:<AboutUs/>
+      },{
+        path:'/request-driver',
+        element:<RequestsDriver/>
       }
     ],
   },

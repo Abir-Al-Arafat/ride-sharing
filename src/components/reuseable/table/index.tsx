@@ -27,7 +27,7 @@ export const Table = ({
                     {headers && headers.length > 0 && (
                         <TableHeader>
                             <TableRow className="border-none pb-10 mx-auto">
-                                {headers.map((header, index) => (
+                                {headers?.map((header, index) => (
                                     <TableHead
                                         className="first:border-none border-l h-0 border-[#b3b3b3]"
                                         key={index}

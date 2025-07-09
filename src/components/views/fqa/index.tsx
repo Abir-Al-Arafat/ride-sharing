@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useTitle } from "../../../hooks/title";
-import { ChevronDown, ChevronUp, SquarePen, Trash2 } from "lucide-react";
+import { ChevronDown, ChevronUp,SquarePen, Trash2 } from "lucide-react";
 import { Button } from "../../ui";
 import Modal from "../../reuseable/modal";
+import Form from "../../reuseable/from";
+import { FromInput } from "../../reuseable/from-input";
+import { useForm, type FieldValues } from "react-hook-form";
+import { FromTextArea } from "../../reuseable/from-textarea";
+import useConfirmation from "../../reuseable/delete-model";
 
 const questionsData = [
   {
@@ -28,9 +33,11 @@ const questionsData = [
 ];
 
 export default function FQA() {
+   const { confirm } = useConfirmation();
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [open, setIsOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false)
 
   const toggleAccordion = (index: number) => {
     setActiveAccordion((prev) => (prev === index ? null : index));
@@ -41,6 +48,41 @@ export default function FQA() {
     setTitle("FAQ");
     setSubtitle("You can see the FAQ section of your app from here");
   }, [setTitle, setSubtitle]);
+
+
+  // edit  question
+  const from = useForm({
+    defaultValues: {
+      question: "",
+      answer: "",
+    },
+  });
+
+
+  const handleSubmit = async (values: FieldValues) => {
+    console.log("Profile form:", values);
+  };
+
+
+  // add question
+  const addfrom = useForm({
+    defaultValues: {
+      question: "",
+      answer: "",
+    },
+  });
+  const addSubmit = async (values: FieldValues) => {
+    console.log("Profile form:", values);
+  };
+
+    const handleDelete = async (id:any) => {
+        const confirmed = await confirm();
+        if (confirmed) {
+            console.log(id)
+        }
+    };
+
+
 
   return (
     <div>
@@ -77,9 +119,8 @@ export default function FQA() {
                     </span>
                   </div>
                   <div
-                    className={`overflow-hidden transition-all duration-300 ease-out ${
-                      activeAccordion === index ? "max-h-full" : "max-h-0"
-                    }`}
+                    className={`overflow-hidden transition-all duration-300 ease-out ${activeAccordion === index ? "max-h-full" : "max-h-0"
+                      }`}
                     style={{
                       maxHeight: activeAccordion === index ? "500px" : "0px",
                     }}
@@ -95,7 +136,7 @@ export default function FQA() {
                       className="text-[#28A745]"
                     />
                   </h1>
-                  <h1 className="bg-[#FFE5E5] py-4 px-4 h-fit rounded-sm cursor-pointer">
+                  <h1 onClick={()=>handleDelete(index)} className="bg-[#FFE5E5] py-4 px-4 h-fit rounded-sm cursor-pointer">
                     <Trash2 size={16} className="text-[#FF0000]" />
                   </h1>
                 </div>
@@ -103,43 +144,56 @@ export default function FQA() {
             ))}
           </div>
         </div>
-        <Button variant={"main"} className="px-12">
+        <Button onClick={() => setAddOpen(!addOpen)} variant={"main"} className="px-12">
           Add More
         </Button>
-        <div>
-          {/* Dialog Box */}
-          <div className="bg-white rounded-lg shadow-2xl p-3 max-w-sm relative mt-4">
-            {/* Triangle pointer */}
-            <div className="absolute -top-2 right-5 transform -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-white"></div>
-
-            {/* Dialog Content */}
-            <div className="flex items-center mb-2">
-              {/* Warning Icon */}
-              <div className="w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                <span className="text-white font-bold text-sm">!</span>
-              </div>
-
-              {/* Dialog Text */}
-              <span className="text-gray-800 text-sm">
-                Are you sure to delete this driver ?
-              </span>
-            </div>
-
-            {/* Dialog Buttons */}
-            <div className="flex justify-end gap-2">
-              <button className="px-3 py-1 cursor-pointer border border-gray-300 bg-white text-gray-700 text-sm rounded hover:bg-gray-50">
-                No
-              </button>
-              <button className="px-3 py-1 bg-red-600 cursor-pointer text-white text-sm rounded border border-red-600">
-                Yes
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
-      {/* modal */}
-      <Modal open={open} setIsOpen={setIsOpen} className="lg:max-w-[530px] p-4">
-        <h1 className="text-xl">Add new question</h1>
+      {/*edit question*/}
+      <Modal open={open} setIsOpen={setIsOpen} className="lg:max-w-[540px] p-4">
+        <h1 className="text-base font-medium text-center">Edit this question</h1>
+        <Form className="space-y-4" from={from} onSubmit={handleSubmit}>
+          <FromInput
+            className="bg-gray-200 border-none"
+            label="Question"
+            name="question"
+            placeholder="Add your question here"
+          />
+          <FromTextArea
+            className="bg-gray-200 border-none"
+            label="Answer"
+            name="answer"
+            placeholder="Add your answer here"
+          />
+          <div className="flex justify-end">
+            <Button variant={"main"} className="px-8 rounded-sm">
+              Update
+            </Button>
+          </div>
+        </Form>
+      </Modal>
+
+      {/* added question */}
+      <Modal open={addOpen} setIsOpen={setAddOpen} className="lg:max-w-[540px] p-4">
+        <h1 className="text-base font-medium text-center">Add new question</h1>
+        <Form className="space-y-4" from={addfrom} onSubmit={addSubmit}>
+          <FromInput
+            className="bg-gray-200 border-none"
+            label="Question"
+            name="question"
+            placeholder="Add your question here"
+          />
+          <FromTextArea
+            className="bg-gray-200 border-none"
+            label="Answer"
+            name="answer"
+            placeholder="Add your answer here"
+          />
+          <div className="flex justify-end">
+            <Button variant={"main"} className="px-8 rounded-sm">
+              ADD
+            </Button>
+          </div>
+        </Form>
       </Modal>
     </div>
   );

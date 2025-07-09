@@ -20,7 +20,6 @@ interface formInputProps {
   eye?: boolean;
   placeholder?: string;
   className?: string;
-  readOnly?: boolean;
 }
 
 export function FromInput({
@@ -28,15 +27,15 @@ export function FromInput({
   type = "text",
   eye = false,
   label,
-  readOnly = false,
   placeholder,
   stylelabel,
   className,
 }: formInputProps) {
-  const [isPasswordVisible, setIsPasswordVisible] = useState<Boolean>(true);
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(true);
   const { control } = useFormContext();
 
-  const inputType = eye && isPasswordVisible ? "password" : type;
+  const inputType = eye ? (isPasswordVisible ? "text" : "password") : type;
+
 
   return (
     <Controller
@@ -57,7 +56,6 @@ export function FromInput({
               {...field}
               type={inputType}
               placeholder={placeholder}
-              readOnly={readOnly}
             />
             {eye && (
               <h1

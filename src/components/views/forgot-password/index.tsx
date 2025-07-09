@@ -3,12 +3,8 @@ import { useForm, type FieldValues } from "react-hook-form";
 import Form from "../../reuseable/from";
 import { FromInput } from "../../reuseable/from-input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import z from "zod";
+import { emailSchema } from "../../../schema";
 
-export const emailSchema = z
-  .object({
-   email: z.string().nonempty("Email is required"),
-  })
 
 
 export default function ForgotPassword() {

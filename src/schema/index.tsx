@@ -29,3 +29,8 @@ export const authSchema = z
    email: z.string().nonempty("Email is required"),
    password: z.string().nonempty("Password is required"),
   })
+
+
+  export const emailSchema = z.object({
+  email: z.string().nonempty("Email is required"),
+});

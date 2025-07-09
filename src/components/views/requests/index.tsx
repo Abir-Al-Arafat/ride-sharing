@@ -1,33 +1,20 @@
-import { ArrowLeft, Eye, Search, Trash2 } from "lucide-react";
+import { ArrowLeft, Search, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { PlaceholderImg } from "../../../lib/utils";
 import { Button, Card, TableCell, TableRow } from "../../ui";
 import { Table } from "../../reuseable/table";
-import { PlaceholderImg } from "../../../lib/utils";
-import { Pagination } from "../../reuseable/pagination";
-import { useTitle } from "../../../hooks/title";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../../reuseable/modal";
-import { Star, Phone, Mail, MapPin, ArrowRight } from "lucide-react"
-import rider from "../../../assets/ride2.png"
 import nidfont from "../../../assets/nid-front.png"
 import nidback from "../../../assets/nid-back.png"
 import drivingFront from "../../../assets/driving-font.png"
-import useConfirmation from "../../reuseable/delete-model";
-import { Link } from "react-router-dom";
 
-export default function Drivers() {
-    const { confirm } = useConfirmation();
-    const { setTitle, setSubtitle, title, subtitle } = useTitle();
+
+export default function RequestsDriver() {
     const [isPreview, setIsPreview] = useState(false)
     const [isIdentity, setIsIdentity] = useState(false)
     const [isDriving, setIsDriving] = useState(false)
-
-    useEffect(() => {
-        setTitle("Drivers");
-        setSubtitle("You can see here all the drivers those use your application to earn money");
-    }, [setTitle, setSubtitle]);
     const headers = ["Sr. No", "Name", "Email", "Contact info", "NID/Passport", "Action"];
-
-
     const tableData = [
         {
             id: 1,
@@ -112,21 +99,13 @@ export default function Drivers() {
         }
     ];
 
-    const handleDelete = async (id: string) => {
-        const confirmed = await confirm();
-        if (confirmed) {
-            console.log(id)
-        }
-    };
-
     return (
         <div>
-            <ul className="lg:hidden mb-3">
-                <li className="text-2xl font-bold text-primary">{title}</li>
-                <li className="text-sm text-gray-600">{subtitle}</li>
-            </ul>
             <ul className="flex items-center justify-between pb-8">
-                <li className="w-fit lg:w-[400px]">
+                <li >
+                    <Link className="font-medium flex items-center gap-1 cursor-pointer" to="/drivers">    <ArrowLeft size={16} />Back</Link>
+                </li>
+                <li className="w-fit lg:w-[500px]">
                     <div className="flex items-center">
                         <input
                             type="text"
@@ -138,119 +117,56 @@ export default function Drivers() {
                         </div>
                     </div>
                 </li>
-                <li>
-                    <Link to="/request-driver">
-                        <Button className="bg-[#5B7A7D] rounded-xs h-full py-[10px] hover:bg-[#5B7A7D] cursor-pointer">
-                            Requests (10)
-                        </Button>
-                    </Link>
+                <li className="opacity-0">
+                    4
                 </li>
             </ul>
-
-            <div>
-                <Table headers={headers}>
-                    {tableData.map((item, index) => (
-                        <TableRow key={index} className="[&>td]:bg-white border-b-18 first:border-t-18 border-[#f3f5f7] [&>td]:pl-22">
-                            <TableCell className="border-style">{item.slNo}</TableCell>
-                            <TableCell className="relative after:absolute after:right-0 after:top-3 after:w-[1px] after:h-6 after:bg-[#b3b3b3]">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
-                                        <img
-                                            src={item.avatar || "/placeholder.svg"}
-                                            alt={item.name}
-                                            className="w-8 h-8 rounded-full object-cover"
-                                        />
-                                    </div>
-                                    <span className="text-sm font-medium text-gray-900">{item.name}</span>
+            <Table headers={headers}>
+                {tableData.map((item, index) => (
+                    <TableRow key={index} className="[&>td]:bg-white border-b-18 first:border-t-18 border-[#f3f5f7] [&>td]:pl-22">
+                        <TableCell className="border-style">{item.slNo}</TableCell>
+                        <TableCell className="relative after:absolute after:right-0 after:top-3 after:w-[1px] after:h-6 after:bg-[#b3b3b3]">
+                            <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                                    <img
+                                        src={item.avatar || "/placeholder.svg"}
+                                        alt={item.name}
+                                        className="w-8 h-8 rounded-full object-cover"
+                                    />
                                 </div>
-                            </TableCell>
-                            <TableCell className="border-style">{item.email}</TableCell>
-                            <TableCell className="border-style">{item.contact_info}</TableCell>
-                            <TableCell className="border-style">{item.nid_or_passport}</TableCell>
-                            <TableCell className="flex gap-2">
-                                <div onClick={() => setIsPreview(!isPreview)} className="bg-[#fff3eb] text-white px-2 py-1 w-fit rounded-md cursor-pointer"><Eye className="text-[#F96D10]" /></div>
-                                <div onClick={() => handleDelete(item.email)} className="bg-[#ffe5e5] text-white px-2 py-1 w-fit rounded-md cursor-pointer"><Trash2 size={20} className="text-[#ff0000]" /></div>
-                            </TableCell>
+                                <span className="text-sm font-medium text-gray-900">{item.name}</span>
+                            </div>
+                        </TableCell>
+                        <TableCell className="border-style">{item.email}</TableCell>
+                        <TableCell className="border-style">{item.contact_info}</TableCell>
+                        <TableCell className="border-style">{item.nid_or_passport}</TableCell>
+                        <TableCell className="flex gap-2">
+                            <h1 onClick={() => setIsPreview(true)} className="border border-[#5B7A7D] px-3 py-1 rounded-xs cursor-pointer"> See Details</h1>
+                        </TableCell>
 
-                        </TableRow>
-                    ))}
+                    </TableRow>
+                ))}
 
 
-                </Table>
-                {/* pagination section */}
-                <ul className="flex flex-wrap justify-between items-center my-7">
-                    <li className="font-medium mb-2 lg:mb-0">Total: 10,258 parents</li>
-                    <li className="font-medium">
-                        <Pagination page={1} onPageChange={() => { }} totalPage={10} per_page={2}></Pagination>
-                    </li>
-                </ul>
-            </div>
-            {/* is Preview */}
+            </Table>
+            {/* preview */}
             <Modal open={isPreview} setIsOpen={setIsPreview} className="md:max-w-[700px] p-4">
                 <div className="p-4 relative">
 
-                    <div className="flex justify-between">
-                        <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                    <div className="flex flex-col justify-center text-center mb-2">
+                        <div className="size-20 mx-auto rounded-full overflow-hidden bg-gray-200">
                             <img
                                 src={PlaceholderImg()}
                                 alt="Profile"
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                        {/* Account Balance */}
-                        <div className="bg-teal-100 px-4 py-1 rounded-md h-fit mr-4">
-                            <div className="text-xs text-primary text-end">Account Balance</div>
-                            <div className="text-xl font-bold text-[#000000] text-end">$500</div>
-                        </div>
-
+                        <h1 className="text-base text-primary font-semibold">Imran Khan</h1>
+                        <h1 className="text-sm text-primary">example@gmail.com</h1>
                     </div>
 
                     {/* Profile Section */}
                     <div className="flex flex-col gap-4 mb-1">
-
-
-                        <div className="flex-1">
-                            <h1 className="text-base text-primary font-semibold mb-1">Imran Khan</h1>
-                            <div className="flex items-center gap-1 mb-2">
-                                <Star className="w-4 h-4 fill-orange-400 text-orange-400" />
-                                <span className="text-sm">4.5</span>
-                            </div>
-
-                            <div className="space-y-1 text-sm text-gray-600">
-                                <div className="flex items-center gap-2">
-                                    <Mail className="w-4 h-4" />
-                                    <span className="text-primary">example@gmail.com</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Phone className="w-4 h-4" />
-                                    <span className="text-primary">2589 4569 3654</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <MapPin className="w-4 h-4" />
-                                    <span className="text-primary">4206 AVALON BLVD, Los Angeles</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Stats Section */}
-                    <div className="flex gap-4 my-2">
-                        <div className="flex items-center gap-2  bg-[#DFF1F2] px-3 py-1 rounded-sm">
-                            <img src={rider} className="size-5 text-[#5B7A7D]" />
-                            <span className="text-sm font-medium text-[#5B7A7D]">500 Rides</span>
-                        </div>
-
-                        <div className="flex items-center gap-2 bg-[#DFF1F2] px-3 py-1 rounded-sm">
-                            <Star className="w-5 h-5 text-[#5B7A7D]" />
-                            <div className="text-sm">
-                                <div className="font-medium text-[#5B7A7D]">4.5 Star</div>
-                                <div className="text-sm text-[#5B7A7D]">260 reviews</div>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-2 border-1 border-[#5B7A7D] px-3 py-1 rounded-sm">
-                            <span className="font-medium text-sm text-[#5B7A7D]">See Rides</span>< ArrowRight size={18} className="w-4 h-4 rotate-[326deg] text-[#5B7A7D]" />
-
-                        </div>
                     </div>
 
                     {/* Contact Information */}
@@ -330,6 +246,10 @@ export default function Drivers() {
                             </div>
                         </div>
                     </Card>
+                    <div className="flex justify-center gap-5">
+                         <Button className="border-1 cursor-pointer border-[#FF0000] px-10 rounded-sm text-[#FF0000] hover:text-[#FF0000] font-medium" variant={"outline"}>Reject</Button>
+                         <Button className=" px-10 cursor-pointer rounded-sm text-white font-medium bg-[#00B047] hover:bg-[#00B047]">Accept</Button>
+                    </div>
                 </div>
             </Modal>
             {/* Nid Modal */}
@@ -379,5 +299,5 @@ export default function Drivers() {
                 </div>
             </Modal>
         </div>
-    );
+    )
 }
