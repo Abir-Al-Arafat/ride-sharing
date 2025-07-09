@@ -1,6 +1,6 @@
 import { ArrowDownLeft } from "lucide-react"
 import { PlaceholderImg } from "../../../lib/utils"
-import { Table, TableCell, TableRow } from "../../ui"
+import { Table, TableBody, TableCell, TableRow } from "../../ui"
 import rider from "../../../assets/rider.png"
 import money from "../../../assets/money.png"
 import location from "../../../assets/location.png"
@@ -31,7 +31,8 @@ export default function Transactions() {
         <li className="text-sm text-gray-600">{subtitle}</li>
       </ul>
              <Table>
-            {rides.map((item, index) => (
+           <TableBody>
+             {rides.map((item, index) => (
                 <TableRow className="border-none" key={index}>
                     <TableCell>
                         <div className="flex gap-2 items-center">
@@ -93,6 +94,7 @@ export default function Transactions() {
                     </TableCell>
                 </TableRow>
             ))}
+           </TableBody>
         </Table>
         </div>
     )

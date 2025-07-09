@@ -21,8 +21,6 @@ export default function NavItem({ item }: { item: SideDataProps[] }) {
     setActiveSubmenu((prev) => (prev === index ? null : index));
   };
 
-  console.log(pathname)
-
   return (
     <ul className="space-y-1">
       {item.map(({ to, label, icon: Icon, submenu }, parentIndex) => (

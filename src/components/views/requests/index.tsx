@@ -8,6 +8,7 @@ import Modal from "../../reuseable/modal";
 import nidfont from "../../../assets/nid-front.png"
 import nidback from "../../../assets/nid-back.png"
 import drivingFront from "../../../assets/driving-font.png"
+import { Pagination } from "../../reuseable/pagination";
 
 
 export default function RequestsDriver() {
@@ -146,9 +147,13 @@ export default function RequestsDriver() {
 
                     </TableRow>
                 ))}
-
-
             </Table>
+            <ul className="flex flex-wrap justify-between items-center my-7">
+                <li className="font-medium mb-2 lg:mb-0">Total: 10,258 parents</li>
+                <li className="font-medium">
+                    <Pagination page={1} onPageChange={() => { }} totalPage={10} per_page={2}></Pagination>
+                </li>
+            </ul>
             {/* preview */}
             <Modal open={isPreview} setIsOpen={setIsPreview} className="md:max-w-[700px] p-4">
                 <div className="p-4 relative">
@@ -247,8 +252,8 @@ export default function RequestsDriver() {
                         </div>
                     </Card>
                     <div className="flex justify-center gap-5">
-                         <Button className="border-1 cursor-pointer border-[#FF0000] px-10 rounded-sm text-[#FF0000] hover:text-[#FF0000] font-medium" variant={"outline"}>Reject</Button>
-                         <Button className=" px-10 cursor-pointer rounded-sm text-white font-medium bg-[#00B047] hover:bg-[#00B047]">Accept</Button>
+                        <Button className="border-1 cursor-pointer border-[#FF0000] px-10 rounded-sm text-[#FF0000] hover:text-[#FF0000] font-medium" variant={"outline"}>Reject</Button>
+                        <Button className=" px-10 cursor-pointer rounded-sm text-white font-medium bg-[#00B047] hover:bg-[#00B047]">Accept</Button>
                     </div>
                 </div>
             </Modal>

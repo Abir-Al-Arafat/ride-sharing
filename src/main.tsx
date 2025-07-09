@@ -4,7 +4,7 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes";
 import "./index.css";
-import { TitleProvider } from "./components/proviers/title";
+import  TitleProvider  from "./components/proviers/title";
 import { ConfirmDialogProvider } from "./components/reuseable/delete-model";
 
 // Render the App
