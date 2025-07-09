@@ -1,5 +1,5 @@
 import { ArrowLeft, Eye, Funnel, MapPin, Search, Trash2 } from "lucide-react";
-import { Button, TableCell, TableRow} from "../../ui";
+import { Button, TableCell, TableRow,Table, TableBody} from "../../ui";
 import { Table as Tables } from "../../reuseable/table";
 import { PlaceholderImg } from "../../../lib/utils";
 import { Pagination } from "../../reuseable/pagination";
@@ -239,8 +239,12 @@ export default function Parents() {
                             }} className="border border-[#5B7A7D] text-[#5B7A7D] px-2 rounded-sm cursor-pointer">See all</li>
                         </ul>
                         <div className="mt-5">
-                            {rides.map((item, index) => (<TransactionsCard key={index} item={item} />
+                           <Table>
+                              <TableBody>
+                                 {rides.map((item, index) => (<TransactionsCard key={index} item={item} />
                             ))}
+                              </TableBody>
+                           </Table>
                         </div>
                     </div>
                 </Modal>
@@ -257,8 +261,12 @@ export default function Parents() {
                             <li className="opacity-0">5</li>
                         </ul>
                         <div className="mt-5 lg:max-w-[1200px]">
-                            {rides1.map((item, index) => (<TransactionsCard key={index} item={item} />
+                              <Table>
+                              <TableBody>
+                                 {rides1.map((item, index) => (<TransactionsCard key={index} item={item} />
                             ))}
+                              </TableBody>
+                           </Table>
                         </div>
                     </div>
                 </Modal>

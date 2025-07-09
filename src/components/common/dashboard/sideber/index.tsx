@@ -22,7 +22,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       )}
       {/* Sidebar */}
       <aside
-        className={`absolute left-0 top-0 z-9 flex h-screen transition-transform  transform duration-300 ease-linear flex-col overflow-y-hidden bg-[#5b7a7d]  text-[#000000] w-[240px] lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`absolute left-0 top-0 z-20 flex h-screen transition-transform  transform duration-300 ease-linear flex-col overflow-y-hidden bg-[#5b7a7d]  text-[#000000] w-[240px] lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
       >
         <div className="flex flex-col ">

@@ -1,13 +1,14 @@
+import { TableCell, TableRow } from '../../ui'
 import { PlaceholderImg } from '../../../lib/utils'
 import money from "../../../assets/money.png"
 import location from "../../../assets/location.png"
 import destination from "../../../assets/des.png"
 import rider from "../../../assets/rider.png"
 
-export default function TransactionsCard({ item }: any) {
+export default function TransactionsCard({item}:any) {
     return (
-        <div className="flex justify-between space-y-4">
-            <div>
+        <TableRow className="border-none">
+            <TableCell>
                 <div className="flex gap-2 items-center">
                     <div className="relative mr-4">
                         <div className="w-12 h-12 rounded-full bg-gray-300 overflow-hidden">
@@ -25,8 +26,8 @@ export default function TransactionsCard({ item }: any) {
                         <div className="text-gray-500 text-xs">{item.timestamp}</div>
                     </div>
                 </div>
-            </div>
-            <div>
+            </TableCell>
+            <TableCell>
                 <div className="flex items-center mr-8">
                     <img src={location} className="mr-2 size-7" />
                     <div>
@@ -34,8 +35,8 @@ export default function TransactionsCard({ item }: any) {
                         <div className="text-gray-500 text-xs">{item.pickupLocation}</div>
                     </div>
                 </div>
-            </div>
-            <div>
+            </TableCell>
+            <TableCell>
                 <div className="flex items-center mr-8">
                     <img src={destination} className="mr-2 size-7" />
                     <div>
@@ -43,8 +44,8 @@ export default function TransactionsCard({ item }: any) {
                         <div className="text-gray-500 text-xs">{item.destination}</div>
                     </div>
                 </div>
-            </div>
-            <div>
+            </TableCell>
+            <TableCell>
                 <div className="flex items-center mr-8">
                     <img src={money} className="mr-2 size-5" />
                     <div>
@@ -52,8 +53,8 @@ export default function TransactionsCard({ item }: any) {
                         <div className="text-gray-500 text-xs">{item.earnings}</div>
                     </div>
                 </div>
-            </div>
-            <div>
+            </TableCell>
+            <TableCell>
                 <div className="flex items-center">
                     <img src={rider} className="mr-2 size-5" />
                     <div>
@@ -61,7 +62,7 @@ export default function TransactionsCard({ item }: any) {
                         <div className="text-gray-500 text-xs">{item.riderName}</div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </TableCell>
+        </TableRow>
     )
 }

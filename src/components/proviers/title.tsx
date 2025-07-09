@@ -9,10 +9,10 @@ export interface TitleContextType {
   setSubtitle: (subtitle: string) => void;
 }
 
-export const TitleContext = createContext<TitleContextType | undefined>(undefined);
+export const TitleContext = createContext<TitleContextType | null>(null);
 
 
-export const TitleProvider = ({ children }: { children: React.ReactNode }) => {
+const TitleProvider = ({ children }: { children: React.ReactNode }) => {
   const [title, setTitle] = useState("Dashboard Overview");
   const [subtitle, setSubtitle] = useState("You can see all of your apps statistics from here");
 
@@ -22,3 +22,5 @@ export const TitleProvider = ({ children }: { children: React.ReactNode }) => {
     </TitleContext.Provider>
   );
 };
+
+export default TitleProvider
